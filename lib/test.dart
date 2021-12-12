@@ -3,20 +3,30 @@ import 'dart:math';
 
 void main() {
   int i=0;
+  int count =0;
   var r = Random();
-  var answer = r.nextInt(10);
+  var answer = r.nextInt(100);
   print(answer);
   for (i=0;;i++) {
-    stdout.write('Please guess the number: ');
+    stdout.write('Guess the number between 1 and 100: ');
     var input = stdin.readLineSync();
     var guess = int.tryParse(input!);
-    print(input);
-    if (guess == answer) {
-      print("Corret!.You are so good!");
-      break;
-    }
-    else {
-      print("Wrong!.Try again");
+    //print(input);
+    if(guess != null)
+    {
+      if (guess < answer) {
+        count++;
+        print("$guess is TOO LOW! ▼");
+      }
+      else if (guess > answer) {
+        count++;
+        print("$guess is TOO HIGH! ▲");
+      }
+      else if (guess == answer) {
+        count++;
+        print("$guess is CORRECT ❤,total guesses: $count");
+        break;
+      }
     }
   }
 }
